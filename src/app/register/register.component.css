@@ -1,0 +1,30 @@
+input {
+    width: 100%;
+  }
+  
+  .container {
+    display: flex;
+    width: 600px;
+    border-radius: 0.5rem;
+  }
+  
+  form {
+    width: 100%;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form .exist_user {
+    text-align: center;
+    margin: 1em;
+  }
+ 
+
+  form button {
+      width: 40%;
+      align-self: center;
+  }
+  
+  
+  
