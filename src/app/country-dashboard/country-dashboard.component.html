@@ -3,8 +3,9 @@
         <h1>Country Repository</h1>
         <div class="d-flex">
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                class="btn btn-success">Add Country</button>
-            <button class="btn btn-dark mx-2">Logout</button>
+                class="btn btn-success" (click)="disableUpdateButton()">Add Country</button>
+            <button class="btn btn-danger mx-2" (click)="deleteAllCountry()" >Delete All</button>
+            <button class="btn btn-dark mx-0.5" (click)="logout()">Logout</button>
         </div>
     </div>
 </nav>
@@ -19,13 +20,13 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>1264</td>
-            <td>Cambodia</td>
-            <td>+855</td>
+        <tr *ngFor="let country of countryArray">
+            <td>{{country.id}}</td>
+            <td>{{country.name}}</td>
+            <td>{{country.code}}</td>
             <td>
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-danger mx-1">Delete</button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="editCountry(country)">Edit</button>
+                <button class="btn btn-danger mx-1" (click)="deleteCountry(country)">Delete</button>
             </td>
         </tr>
     </tbody>
@@ -41,24 +42,25 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form [formGroup]="countryInfo">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Country ID</label>
-                        <input type="text" class="form-control" placeholder="1264..." id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input formControlName="id" type="text" class="form-control" placeholder="1264..." id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Country Name</label>
-                        <input type="text" class="form-control" placeholder="Cambodia..." id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input formControlName="name" type="text" class="form-control" placeholder="Cambodia..." id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Country Code</label>
-                        <input type="text" class="form-control" placeholder="CB..." id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input formControlName="code" type="text" class="form-control" placeholder="+855..." id="exampleInputEmail1" aria-describedby="emailHelp">
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Add</button>
+                <button type="button" *ngIf="addVisible" class="btn btn-success" (click)="addNewCountry()">Add</button>
+                <button type="button" *ngIf="updateVisible" class="btn btn-primary" (click)="updateCountry()">Update</button>
             </div>
         </div>
     </div>
