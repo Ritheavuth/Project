@@ -9,6 +9,12 @@ export class CountryService {
 
   constructor(private http: HttpClient) { }
 
-  addCountry(country: Country) {
-  }
+  getCountries() {}
+
+  addCountry(country: Country) {}
+
+  editCountry(country: Country) {}
+
+  deleteCountry(country: Country) {}
+
 }
